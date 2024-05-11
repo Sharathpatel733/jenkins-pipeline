@@ -17,23 +17,23 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script{
-                    sh 'docker build -t kelvinskell/python-http-server .'
+                    sh 'docker build -t mrcloudtech/python-http-server .'
             }
         }
     }
         stage('Containerize And Test') {
             steps {
                 script{
-                    sh 'docker run -d --name python-app kelvinskell/python-http-server && sleep 10 && docker stop python-app'
+                    sh 'docker run -d --name python-app mrcloudtech/python-http-server && sleep 10 && docker stop python-app'
                 }
             }
         }
         stage('Push Image To Dockerhub') {
             steps {
                 script{
-                    withCredentials([string(credentialsId: 'DockerHubPass', variable: 'DockerHubpass')]) {
-                    sh 'docker login -u kelvinskell --password ${DockerHubpass}' }
-                    sh 'docker push kelvinskell/python-http-server'
+                    withCredentials([string(credentialsId: 'mrcloudtech', variable: 'Minfy@733')]) {
+                    sh 'docker login -u mrcloudtech --password ${Minfy@733}' }
+                    sh 'docker push mrcloudtech/python-http-server'
                 }
             }
         }    
